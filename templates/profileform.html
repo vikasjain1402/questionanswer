@@ -1,0 +1,11 @@
+
+<form action="/myprofile/" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+{{profileform.as_p}}
+
+<input type="submit" value="submit">
+</form>
+
+{{profile.first_name}}
+{{profile.last_name}}
+{{profile.username}}

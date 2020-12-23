@@ -1,0 +1,412 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Responsive Bootstrap 4 Magazine/Blog Theme">
+      <meta name="author" content="Bootlab">
+      <title>Milo - Magazine/Blog Theme</title>
+
+      <link href="{% static 'css/app.css' %}" rel="stylesheet">
+      <script src="{% static 'js/app.js' %}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"
+            integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg=="
+            crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-angular.min.js"
+            integrity="sha512-KT0oYlhnDf0XQfjuCS/QIw4sjTHdkefv8rOJY5HHdNEZ6AmOh1DW/ZdSqpipe+2AEXym5D0khNu95Mtmw9VNKg=="
+            crossorigin="anonymous"></script>
+
+
+      <style type="text/css">
+            .xyz {
+                  white-space: pre;
+            }
+      </style>
+      {% block headstyle %}
+      {% endblock %}
+
+</head>
+
+<body>
+      {% for message in messages %}
+
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{message.alert}}!</strong> {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+
+
+      {% endfor %}
+
+
+      <header>
+            <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+                  <div class="container">
+
+                        <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse"
+                              data-target=".navbar-collapse" aria-controls="navbar-left navbar-right"
+                              aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse order-3 order-md-2" id="navbar-left">
+                              <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item dropdown active">
+                                          <a class="nav-link dropdown-toggle" href="mydeskboard" id="dropdown01"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My
+                                                Deskboard</a>
+                                          <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                                <a class="dropdown-item" href="/mydeskboard/">My
+                                                      Question Answers</a>
+                                                <a class="dropdown-item" href="/myprofile">My
+                                                      Profile</a>
+
+                                          </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                          <a class="nav-link dropdown-toggle" href="#" id="dropdown02"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">Posts</a>
+                                          <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                                <a class="dropdown-item" href="post-image.html">Image</a>
+                                                <a class="dropdown-item" href="post-video.html">Video</a>
+                                          </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                          <a class="nav-link dropdown-toggle" href="#" id="dropdown03"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">Components</a>
+                                          <div class="dropdown-menu" aria-labelledby="dropdown03">
+                                                <a class="dropdown-item" href="doc-alerts.html">Alerts</a>
+                                                <a class="dropdown-item" href="doc-buttons.html">Buttons</a>
+                                                <a class="dropdown-item" href="doc-cards.html">Cards</a>
+                                                <a class="dropdown-item" href="doc-forms.html">Forms</a>
+                                                <a class="dropdown-item" href="doc-icons.html">Icons</a>
+                                                <a class="dropdown-item" href="doc-pagination.html">Pagination</a>
+                                                <a class="dropdown-item" href="doc-tables.html">Tables</a>
+                                                <a class="dropdown-item" href="doc-typography.html">Typography</a>
+                                          </div>
+                                    </li>
+                              </ul>
+                        </div>
+
+                        <a class="navbar-brand mx-auto order-1 order-md-3" href="/question">Milø</a>
+
+                        <div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
+                              <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                          <a class="nav-link" href="page-about.html">Hi {{user}}hh
+                                                {%if user.profilepic %}
+                                                <img style="width: 3em;" src="{{user.profilepic.url}}" class="w-30">
+                                                {% else %}
+
+                                                <img style="width: 3em;"
+                                                      src="{{user.socialaccount_set.all.0.get_avatar_url}}"
+                                                      class="w-30">
+                                                {% endif %}
+                                          </a>
+                                    </li>
+                                    <li class="nav-item">
+                                          <a class="nav-link" href="page-about.html">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                          <a class="nav-link" href="page-contact.html">Contact</a>
+                                    </li>
+                              </ul>
+                              <form class="form-inline" role="search">
+                                    <input class="search js-search form-control form-control-rounded mr-sm-2"
+                                          type="text" title="Enter search query here.." placeholder="Search.."
+                                          aria-label="Search">
+                              </form>
+                        </div>
+                  </div>
+            </nav>
+      </header>
+
+
+      <div class="container">
+            <div class="row" style="width: 100%;">
+                  <div class="col-md-4 order-md-first  ">
+                        <h2>Most Recent Questions....</h2>
+
+
+                       
+
+                        {% for question in recentquestions %}
+
+                        <div class="card">
+                              
+
+                                    <div class="row" style="background-color: lavenderblush; border-radius: 1em;">
+                                          <div class="col-2"
+                                                style="display: flex;flex-wrap: wrap;flex-direction: column;background-color: lightgrey;justify-content: center;">
+                                                <a href="/likes?question={{question.id}}">
+                                                <span><svg width="2em" height="2em" viewBox="0 0 16 16"
+                                                            class="bi bi-caret-up-fill" fill="currentColor"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                  d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                                      </svg></span></a>
+
+                                                <span>{{question.lik}}</span>
+                                                <a href="/likes?question=-{{question.id}}">
+                                                <span><svg width="2em" height="2em" viewBox="0 0 16 16"
+                                                            class="bi bi-caret-down-fill" fill="currentColodr"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                  d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                                      </svg></span>
+                                                </a>
+
+                                          </div>
+                                          <a href="{% url 'slug' question.slug %}">
+                                          <div class="col-10">
+                                                <div style="font-size: .8em;color: grey;">
+                                                      {{question.questiondate}}</div>
+                                                <div>{{question.title}}</div>
+
+
+                                          </div>
+                                    </a>
+
+                                    </div>
+
+
+                              
+                              <div class="row" class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#v{{question.id}}" style="background-color: grey;">
+                                    AskedBy :{{question.askedby}}
+                              </div>
+
+                        </div>
+
+
+                        <div id="v{{question.id}}" class="collapse" aria-labelledby="headingOne">
+                              <p class="card-body">
+                               {{question.discription}}
+                              </p>
+                        </div>
+
+
+                        {% endfor %}
+
+
+                        <div class="pagination">
+                              <span class="step-links">
+                                  {% if recentquestions.has_previous %}
+                                      <a href="?page=1">&laquo; first</a>
+                                      <a href="?page={{ recentquestions.previous_page_number }}">previous</a>
+                                  {% endif %}
+                          
+                                  <span class="current">
+                                      Page {{ recentquestions.number }} of {{ recentquestions.paginator.num_pages }}.
+                                  </span>
+                          
+                                  {% if recentquestions.has_next %}
+                                      <a href="?page={{ recentquestions.next_page_number }}">next</a>
+                                      <a href="?page={{ recentquestions.paginator.num_pages }}">last &raquo;</a>
+                                  {% endif %}
+                              </span>
+                        </div>
+
+                  </div>
+                  <div class="col-md-5  order-sm-first order-first border-warning">
+
+                        {% block bodymid %}
+
+                        {% endblock %}
+
+                  </div>
+                  <div class="col-md-3  border border-success">
+
+                        <aside class="sidebar">
+                              <div class="card mb-4">
+                                    <div class="card-body">
+                                          <h4 class="card-title">About</h4>
+                                          <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum
+                                                rhoncus, sem quam <a href="#">semper libero</a>, sit amet adipiscing sem
+                                                neque sed ipsum. </p>
+                                    </div>
+                              </div><!-- /.card -->
+                        </aside>
+
+                        <aside class="sidebar sidebar-sticky">
+                              <div class="card mb-4">
+                                    <div class="card-body">
+                                          <h4 class="card-title">Popular Tags</h4>
+
+                                          {% for tag in commontags %}
+
+                                          <a class="btn btn-light btn-sm mb-1" href="/tag/{{tag}}">{{tag}}</a>
+                                          {% endfor %}
+
+
+                                    </div>
+                              </div><!-- /.card -->
+                              <div class="card mb-4">
+                                    <div class="card-body">
+                                          <h4 class="card-title">Popular Questions</h4>
+
+                                          <a href="post-image.html" class="d-inline-block">
+                                                <h4 class="h6">The blind man</h4>
+                                                <img class="card-img" src="img/articles/2.jpg" alt="" />
+                                          </a>
+                                          <time class="timeago" datetime="2019-10-03 20:00">3 october 2019</time> in
+                                          Lifestyle
+
+                                          <a href="post-image.html" class="d-inline-block mt-3">
+                                                <h4 class="h6">Crying on the news</h4>
+                                                <img class="card-img" src="img/articles/3.jpg" alt="" />
+                                          </a>
+                                          <time class="timeago" datetime="2019-07-16 20:00">16 july 2019</time> in Work
+
+                                    </div>
+                                    <div>
+
+
+                                          {%for question  in mostanswered %}
+
+                                          <div class="alert alert-success" role="alert">
+                                                <h4 class="alert-heading">{{question.title}}</h4>
+                                                <pre>{{question.discription}}</pre>
+                                                <hr>
+                                                <p class="mb-0">{{question.questiondate}}</p>
+                                                <p>{{question.answers}}</p>
+                                                {{question.tag}}
+
+                                          </div>
+
+
+
+
+                                          {% endfor %}
+                                    </div>
+                              </div><!-- /.card -->
+                        </aside>
+
+                  </div>
+            </div>
+      </div>
+
+
+
+      <div class="site-newsletter">
+            <div class="container">
+                  <div class="text-center">
+                        <h3 class="h4 mb-2">Subscribe to our newsletter</h3>
+                        <p class="text-muted">Join our monthly newsletter and never miss out on new stories and
+                              promotions.</p>
+
+                        <div class="row">
+                              <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ml-auto mr-auto">
+                                    <div class="input-group mb-3 mt-3">
+                                          <input type="text" class="form-control" placeholder="Email address"
+                                                aria-label="Email address">
+                                          <span class="input-group-btn">
+                                                <button class="btn btn-secondary" type="button">Subscribe</button>
+                                          </span>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+
+      <div class="site-instagram">
+            <div class="action">
+                  <a class="btn btn-light" href="#">
+                        Follow us @ Instagram
+                  </a>
+            </div>
+            <div class="row no-gutters">
+                  <div class="col-sm-6">
+                        <div class="row no-gutters">
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/1.jpg" alt="" />
+                                    </a>
+                              </div>
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/2.jpg" alt="" />
+                                    </a>
+                              </div>
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/3.jpg" alt="" />
+                                    </a>
+                              </div>
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/4.jpg" alt="" />
+                                    </a>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col-sm-6">
+                        <div class="row no-gutters">
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/5.jpg" alt="" />
+                                    </a>
+                              </div>
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/6.jpg" alt="" />
+                                    </a>
+                              </div>
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/7.jpg" alt="" />
+                                    </a>
+                              </div>
+                              <div class="col-3">
+                                    <a class="photo" href="#">
+                                          <img class="img-fluid" src="img/instagram/8.jpg" alt="" />
+                                    </a>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+
+      <footer class="site-footer bg-darkest">
+            <div class="container">
+
+                  <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                              <a class="nav-link" href="#">Privacy policy</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="#">Terms</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="#">Feedback</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="#">Advertise</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="page-contact.html">Contact</a>
+                        </li>
+                  </ul>
+                  <div class="copy">
+                        &copy; Milo 2019<br />
+                        All rights reserved
+                  </div>
+            </div>
+      </footer>
+
+
+
+</body>
+
+</html>

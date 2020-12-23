@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+    {% block bodymid %}
+    <div style="border :10px solid gray"  >
+
+
+
+            <article class="card mb-4 " style="background-color: lightgray;">
+                <header class="card-header">
+                    <div class="card-meta">
+                        <a href="#"><time class="timeago" datetime="{{question.questiondate}}">8 may 2019</time></a> in <a
+                            href="page-category.html">Journey</a>
+                    </div>
+                        <a href="{% url 'slug' question.slug %}"></a>
+                            <h4 class="card-title">{{question.title}}</h4>
+                        </a>
+                </header>
+
+                {% if question.file %}
+                <a href="post-image.html">
+                    <img class="card-img" src="{{question.file.url}}" alt="image" />
+                </a>
+                {% endif %}
+                <div class="card-body">
+                    <pre class="card-text">{{question.discription}} </pre>
+                </div>
+
+                <div class="card-body d-flex justify-content-start">
+                    {% for tag in question.tags.all %}
+
+                    <p class="badge badge-primary mr-2">{{tag.slug}} </p>
+
+                    {% endfor %}
+                </div>
+
+                <div class="media">
+                    {% if question.askedby.profilepic.url %}
+                    <img style="width:3em" src="{{question.askedby.profilepic.url}}"
+                        class="align-self-start mr-3 rounded-circle w-10" alt="...">
+                    {% endif %}
+                    <div class="media-body">
+                        <h5 class="mt-0">{{question.askedby}}</h5>
+                        <p>{{question.questiondate}}</p>
+                    </div>
+                </div>
+        
+
+
+
+
+        </article>
+
+
+        {% if answerform %}
+        <form method="POST" target="/answer" enctype="multipart/form-data" novalidate
+            class="mt-20 container border border-primary" style="margin-top: 20px;border-right: 10px;">
+            {% csrf_token %}
+            {{answerform.as_p}}
+            <input type="submit" value="submit" class="w-90" style="margin-bottom: 30px;">
+        </form>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
